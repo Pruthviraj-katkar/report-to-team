@@ -8,9 +8,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+       - name: checkout
+         uses: actions/checkout@v2
+         
        - name: create file
          run: echo "hi hello good morning" > report.txt
+         
        - name: send to teams
+         env: 
+           WEBHOOK: ${{ secrets.WEBHOOK }}
          run: |
-           curl -X POST -H "Content-Type: text/plain" --data-binary "@report.txt" ${{ secrets.WEBHOOK }}
+           curl -X POST -H "Content-Type: text/plain" --data-binary "@report.txt" $WEBHOOK
   
