@@ -16,6 +16,6 @@ jobs:
            WEBHOOK: ${{ secrets.WEBHOOK }}
          run: |
            echo 'hello hi goodbye' > report.txt
-           reportofme=$( cat report.txt )
+           reportofme='\"text"\:\"$( cat report.txt\" )'
            curl -X POST -H "Content-Type: text/plain" --data-binary "$reportofme" $WEBHOOK
   
