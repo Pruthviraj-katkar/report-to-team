@@ -13,12 +13,12 @@ jobs:
          
        - name: create file
          run: |
-           echo '{"summary":"John", "text":30, "car":"lambo"}' > report.json
-           cat report.json
+           echo 'hello hi goodbye' > report.txt
+           reportofme=$( cat report.txt )
          
        - name: send to teams
          env: 
            WEBHOOK: ${{ secrets.WEBHOOK }}
          run: |
-           curl -X POST -H "Content-Type: application/json" --data-binary "@report.json" $WEBHOOK
+           curl -X POST -H "Content-Type: text/plain" --data-binary "@reportofme" $WEBHOOK
   
