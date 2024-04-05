@@ -1,0 +1,13 @@
+name: report to team
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+       - name: create file
+         run: touch report.txt
+       - name: send to teams
+         run: |
+           curl -X POST -H "Content-Type: text/plain" --data-binary "@report.txt" ${{ secrets.WEBHOOK }}
+  
