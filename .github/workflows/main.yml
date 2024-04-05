@@ -12,11 +12,11 @@ jobs:
          uses: actions/checkout@v2
          
        - name: create file
-         run: echo "hi hello good morning" > report.txt
+         run: echo '{"name":"John", "age":30, "car":null}' > report.json
          
        - name: send to teams
          env: 
            WEBHOOK: ${{ secrets.WEBHOOK }}
          run: |
-           curl -X POST -H "Content-Type: text/plain" --data-binary "@report.txt" $WEBHOOK
+           curl -X POST -H "Content-Type: application/json" --data-binary "@report.json" $WEBHOOK
   
