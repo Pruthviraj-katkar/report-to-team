@@ -12,7 +12,7 @@ jobs:
          uses: actions/checkout@v2
          
        - name: create file
-         run: echo '{"summary":"John", "text":30, "car":null}' > report.json
+         run: echo '{"summary":"John", "text":30, "car":"lambo"}' > report.json
          
        - name: send to teams
          env: 
