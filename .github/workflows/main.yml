@@ -11,18 +11,11 @@ jobs:
        - name: checkout
          uses: actions/checkout@v2
          
-  
-       - name: create file
-         id: trivy_scan
-         run: |
-            trivy_output=$( echo "hi hello good mornin" )
-            echo "::set-output name=trivy_output::$trivy_output"
-         
        - name: send to teams
          env: 
            WEBHOOK: ${{ secrets.WEBHOOK }}
          run: |
-           trivy_output="${{ steps.trivy_scan.outputs.trivy_output }}"
+           trivy_output="$( echo 'HI Pruthvi')"
            json_payload="{\"text\": \"$trivy_output\"}"
            curl -X POST -H "Content-Type: application/json" --data-binary "$json_payload" $WEBHOOK
   
